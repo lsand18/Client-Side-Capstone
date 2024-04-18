@@ -1,0 +1,169 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Paul Hollywood",
+      "phone": "(615) 604-8356",
+      "email": "paulhollywood@gmail.com",
+      "isStaff": true
+    },
+    {
+      "id": 2,
+      "fullName": "Greg Korte",
+      "phone": "(615) 784-0983",
+      "email": "greg@gmail.com",
+      "isStaff": false
+    },
+    {
+      "email": "leah@email.com",
+      "phone": "7313433297",
+      "isStaff": false,
+      "fullName": "Leah",
+      "id": 3
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "userId": 2,
+      "sizeId": 1,
+      "flavorId": 1,
+      "theme": "birthday",
+      "writing": "Happy Birthday Steve!",
+      "img": "https://www.twosisterscrafting.com/wp-content/uploads/2015/02/cookie-monster-cake-1200-featured-720x720.jpg",
+      "pickup": 1713312000000,
+      "completed": false
+    },
+    {
+    "id": 2,
+    "userId": 2,
+    "sizeId": 3,
+    "flavorId": 3,
+    "theme": "congratulations",
+    "writing": "Congrats Cohort 70!",
+    "img": "https://msocookies.com/cdn/shop/collections/Classic_Trimmed_Cookie_Cake_1200x1200.jpg?v=1633529649",
+    "pickup": 1713312000,
+    "completed":false
+    },
+    {
+        "id": 3,
+        "userId": 1,
+        "sizeId": 1,
+        "flavorId": 1,
+        "theme": "birthday",
+        "writing": "Happy Birthday Steve!",
+        "img": "https://www.twosisterscrafting.com/wp-content/uploads/2015/02/cookie-monster-cake-1200-featured-720x720.jpg",
+        "pickup": 1713312000000,
+        "completed": true
+      }
+  ],
+  "sizes": [
+    {
+      "id": 1,
+      "size": "Small 8x8 (serves 7-12)",
+      "price": 30
+    },
+    {
+      "id": 2,
+      "size": "Medium 9x9 (serves 10-15)",
+      "price": 40
+    },
+    {
+      "id": 3,
+      "size": "Large 12x9 (serves 14-25)",
+      "price": 60
+    },
+    {
+      "id": 4,
+      "size": "Extra-Large (serves 22-40)",
+      "price": 75
+    }
+  ],
+  "flavors": [
+    {
+      "id": 1,
+      "flavor": "Chocolate Chip"
+    },
+    {
+      "id": 2,
+      "flavor": "Cookies & Cream"
+    },
+    {
+      "id": 3,
+      "flavor": "Circus"
+    },
+    {
+      "id": 4,
+      "flavor": "Vanilla Sprinkle"
+    }
+  ],
+  "colors": [
+    {
+      "id": 1,
+      "color": "Blue"
+    },
+    {
+      "id": 3,
+      "color": "Red"
+    },
+    {
+      "id": 2,
+      "color": "Orange"
+    },
+    {
+      "id": 4,
+      "color": "Yellow"
+    },
+    {
+      "id": 5,
+      "color": "Pink"
+    },
+    {
+      "id": 6,
+      "color": "Green"
+    },
+    {
+      "id": 7,
+      "color": "Purple"
+    }
+  ],
+  "orderColors": [
+    {
+      "id": 1,
+      "orderId": 1,
+      "colorId": 6
+    },
+    {
+      "id": 2,
+      "orderId": 1,
+      "colorId": 7
+    },
+    {
+      "id": 3,
+      "orderId": 1,
+      "colorId": 1
+    }
+  ],
+  "punches": [
+    {
+      "id": 1,
+      "userId": 2
+    },
+    {
+      "id": 2,
+      "userId": 2
+    },
+    {
+      "id": 3,
+      "userId": 2
+    }
+  ],
+  "currentFlavors": [
+    {
+      "id": 1,
+      "cookie": "Lemon Meringue",
+      "desc": "",
+      "img": ""
+    }
+  ]
+}
