@@ -52,7 +52,7 @@ export const OrderList = ({currentUser}) => {
         DeleteOrder(orderId)
     }
 
-
+//create a control that shows upcoming orders first and past date orders at the end
 return (
     <div className="orders-container">
     <h2>Orders </h2>
@@ -72,9 +72,9 @@ return (
                         <header className="order-info">Order #{orderObj.id}</header>
                     </Link>
                     <footer>
-                        <div className="order-info">{new Date(orderObj?.pickup).toDateString()}</div>
+                        <div className="order-info">{new Date(orderObj?.pickup).toLocaleDateString('en-US', {timeZone: 'GMT', dateStyle: 'medium'})}</div>
                         <div className="btn-container">
-                            {/* does this button only show for employees? */}
+                            {currentUser.isStaff ? (
                                 <button className="delete-btn"
                                 value={orderObj.id}
                                 onClick={async () =>{
@@ -83,7 +83,7 @@ return (
                                 }}
                                 >
                                     <i className="fa-solid fa-trash-can"></i>
-                                </button>
+                                </button>):("")}
                             </div>
                     </footer>
                 </section>

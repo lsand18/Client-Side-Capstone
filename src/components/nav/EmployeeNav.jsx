@@ -6,7 +6,7 @@ export const EmployeeNav = () => {
         <ul className="navbar">
         <li className="navbar-item">
             {/* change this link */}
-            <Link to='/'>Orders</Link>
+            <Link to='/orders'>Orders</Link>
         </li>
         <li className="navbar-item">
             {/* change this link */}

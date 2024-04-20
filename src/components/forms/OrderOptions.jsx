@@ -1,6 +1,28 @@
-export const OrderOptions = ({cakeOptions,transientOrder, setTransientOrder}) => {
+import { useState, useEffect } from "react"
+import { getSizes, getFlavors, getColors } from "../../services/orderService.js"
+
+export const OrderOptions = ({transientOrder, setTransientOrder}) => {
 //define change function - handleSizeChange
 //cakeOptions, transientOrder drill prop
+const [cakeOptions, setCakeOptions] = useState({
+    sizes: [],
+    flavors: [],
+    colors: []
+})
+useEffect(()=>{
+    Promise.all([
+        getSizes(),
+        getFlavors(),
+        getColors()
+    ]).then(([sizes, flavors, colors]) =>{
+        setCakeOptions(prevCakeOptions => ({
+            ...prevCakeOptions,
+            sizes,
+            flavors,
+            colors
+        }))
+    })
+}, [])
 
 const handleSizeChange = (event) =>{
    const sizeId = parseInt(event.target.value)

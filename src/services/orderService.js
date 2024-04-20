@@ -24,5 +24,29 @@ export const DeleteOrder = async (orderId) => {
   }
 
   export const getOrdersByOrderId = (orderId) =>{
-    return fetch (`http://localhost:8088/orders?id=${orderId}&_expand=size&_expand=flavor&_embed=orderColors`)
+    return fetch (`http://localhost:8088/orders?id=${orderId}&_expand=size&_expand=flavor&_embed=orderColors`).then(res => res.json())
   }
+
+  export const getCakeColorsByOrderId = (orderId) =>{
+    return fetch (`http://localhost:8088/orderColors?orderId=${orderId}&_expand=color`).then(res => res.json())
+  }
+  export const addOrder = async (orderObj) => {
+    const response = await fetch("http://localhost:8088/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderObj),
+    });
+    return await response.json();
+  };
+  export const postColor = async (colorObj) => {
+    const response = await fetch("http://localhost:8088/orderColors", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(colorObj),
+    });
+    return await response.json();
+  };
