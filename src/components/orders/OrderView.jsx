@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { getOrdersByOrderId, DeleteOrder } from "../../services/orderService.js"
-// import "./orders.css"
+import "./orders.css"
 import { CakeColors } from "./CakeColors.jsx"
 import { getUserByUserId } from "../../services/userService.js"
 

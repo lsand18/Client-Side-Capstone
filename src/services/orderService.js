@@ -13,6 +13,13 @@ export const DeleteOrder = async (orderId) => {
     const response = await fetch(`http://localhost:8088/orders/${orderId}`, deleteOptions)
   }
 
+  export const DeleteColor = async (colorObjId) => {
+    const deleteOptions = {
+        method: "DELETE"
+    }
+    const response = await fetch(`http://localhost:8088/orderColors/${colorObjId}`, deleteOptions)
+  }
+
   export const getSizes = () => {
     return fetch (`http://localhost:8088/sizes`).then(res => res.json())
   }
@@ -47,6 +54,16 @@ export const DeleteOrder = async (orderId) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(colorObj),
+    });
+    return await response.json();
+  };
+  export const updateOrder = async (order) => {
+    const response = await fetch(`http://localhost:8088/orders/${order.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(order),
     });
     return await response.json();
   };

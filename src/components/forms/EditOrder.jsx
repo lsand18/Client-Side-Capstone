@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getCakeColorsByOrderId, getOrdersByOrderId } from "../../services/orderService.js"
+import { getCakeColorsByOrderId, getOrdersByOrderId, postColor, updateOrder, DeleteColor } from "../../services/orderService.js"
 import { useParams } from "react-router-dom"
 import { OrderOptions } from "./OrderOptions.jsx"
 import { useNavigate } from "react-router-dom"
@@ -21,7 +21,6 @@ const [transientOrder, setTransientOrder] = useState({
 const { orderId } = useParams()
 const navigate = useNavigate()
 
-//need to get colors too
 useEffect(()=>{
 getOrdersByOrderId(orderId).then((orderArr)=>{
     const orderObj = orderArr[0]
@@ -55,19 +54,50 @@ const handleDateChange = () => {
 
 const handleSave = async (e) =>{
     e.preventDefault()
-    //write update Order
-    await updateOrder(transientOrder)
+    const order = {
+        id: parseInt(orderId),
+        sizeId: transientOrder.sizeId,
+        flavorId: transientOrder.flavorId,
+        userId: transientOrder.userId,
+        theme: transientOrder.theme,
+        writing: transientOrder.writing,
+        pickup: transientOrder.pickup,
+        completed: false,
+    }
+    await updateOrder(order)
     await checkColors()
     navigate(`/orders`)
 }    
 
-const checkColors = () => {
+const checkColors = async () => {
+    debugger
     //get original order by fetch and set const orderObj
     //map throught orderObj.orderColors and find index by checking transientOrder.orderColors
     //if index ==== -1 then it wasnt in the original so add it
     //now map through transient order.orderColors
     //colorIndex == orderObj.orderColors.findIndex
     //if index ==== -1 then it was in original but not now so delete it
+
+    getCakeColorsByOrderId(parseInt(orderId)).then(orderArr =>{
+        {orderArr.map((orderObj)=>{
+            const colorIndex = transientOrder.orderColors?.findIndex(color => color.colorId === orderObj.colorId)
+        if (colorIndex === -1){
+            DeleteColor(orderObj.id)
+        }
+        })}
+        {
+            transientOrder.orderColors.map((colorObj)=>{
+                const colorIndex = orderArr.findIndex(color => color.colorId === colorObj.colorId)
+                if (colorIndex === -1){
+                    const newColorObj = {
+                        orderId: parseInt(orderId),
+                        colorId: colorObj.id
+                    }
+                    postColor(newColorObj)
+                }
+            })
+        }
+    })
 }
 
 const formatDateFromTimestamp = () => {

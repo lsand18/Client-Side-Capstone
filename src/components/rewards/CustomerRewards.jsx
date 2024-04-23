@@ -1,12 +1,12 @@
 import coloredCookie from "../../assets/coloredCookie.png"
 import transparentCookie from "../../assets/transparentCookie.png"
 import freeCookie from "../../assets/freeCookie.png"
-import freeCookieColored from "../../assets/freeCookieColored.png"
+import check from "../../assets/Check.png"
 import "./rewards.css"
 import { useEffect, useState } from "react"
 import {getPunchesByUserId, getRewardCode, PostPunch } from "../../services/userService.js"
+import { ImageRotator } from "./ImageRotator.jsx"
 
-//in order to protect against multiple uses,  check if CODE exist in pucnhes before adding
 
 export const CustomerRewards = ({currentUser}) => {
   const [rewardLevel, setRewardLevel] = useState(0)
@@ -29,10 +29,12 @@ export const CustomerRewards = ({currentUser}) => {
 
 
   const imageElements = Array.from({length: rewardLevel},(_,index) =>(
-    <img key={index} src={coloredCookie}/>
+    <ImageRotator key={index} image={coloredCookie}/>
+    // <img key={index} src={coloredCookie}/>
   ))
   const imageElementsTwo = Array.from({length: (9 - rewardLevel)},(_,index) =>(
-    <img key={10-index} src={transparentCookie}/>
+    <ImageRotator key={index + rewardLevel} image={transparentCookie}/>
+    // <img key={10-index} src={transparentCookie}/>
   ))
 
   const handlePost = () => {
@@ -79,9 +81,11 @@ export const CustomerRewards = ({currentUser}) => {
             {imageElements}
             {imageElementsTwo}
            {rewardLevel <= 9 ? (
-            <img src={freeCookie} />
+            <ImageRotator image={freeCookie}/>
+            // <img src={freeCookie} />
            ): (
-            <img src={freeCookieColored} />
+            <ImageRotator image={check}/>
+            // <img src={freeCookieColored} />
            )}
          
         </div>
