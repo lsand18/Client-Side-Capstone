@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { getOrdersByOrderId, getColors, DeleteOrder } from "../../services/orderService.js"
+import { getOrdersByOrderId, DeleteOrder } from "../../services/orderService.js"
 // import "./orders.css"
 import { CakeColors } from "./CakeColors.jsx"
 import { getUserByUserId } from "../../services/userService.js"
@@ -85,7 +85,9 @@ export const OrderView = ({currentUser}) => {
                     }}>Edit</button>
             <button className="btn-primary"
             onClick={()=>{
-                DeleteOrder(currentOrder.id)
+                DeleteOrder(currentOrder.id).then(()=>{
+                    navigate(`/orders`)
+                })
             }}>Cancel Order</button>
         </div>
         </>

@@ -5,47 +5,27 @@
 
 import { useEffect, useState } from "react"
 import { OrderOptions } from "./OrderOptions.jsx"
-import { getSizes, getFlavors, getColors, addOrder, postColor } from "../../services/orderService.js"
+import { addOrder, postColor } from "../../services/orderService.js"
 import { useNavigate } from "react-router-dom"
 
 export const NewOrder = ({currentUser}) => {
     const [transientOrder, setTransientOrder]= useState({
-        size: 0,
-        flavor: 0,
-        user: 0,
+        sizeId: 0,
+        flavorId: 0,
+        userId: 0,
         theme: "",
         writing: "",
         img: "",
         pickup: 0,
         completed: false,
-        colors: []
+        orderColors: []
     })
-    // const [cakeOptions, setCakeOptions] = useState({
-    //     sizes: [],
-    //     flavors: [],
-    //     colors: []
-    // })
     const navigate = useNavigate()
-
-    // useEffect(()=>{
-    //     Promise.all([
-    //         getSizes(),
-    //         getFlavors(),
-    //         getColors()
-    //     ]).then(([sizes, flavors, colors]) =>{
-    //         setCakeOptions(prevCakeOptions => ({
-    //             ...prevCakeOptions,
-    //             sizes,
-    //             flavors,
-    //             colors
-    //         }))
-    //     })
-    // }, [])
 
     useEffect(()=>{
         setTransientOrder(prevOrder => ({
             ...prevOrder,
-            user: currentUser.id
+            userId: currentUser.id
         }))
     }, [currentUser])
 
@@ -62,16 +42,16 @@ export const NewOrder = ({currentUser}) => {
         e.preventDefault()
         console.log("order submitted")
         const orderObj = {
-            "userId": transientOrder.user,
-            "sizeId": transientOrder.size,
-            "flavorId": transientOrder.flavor,
+            "userId": transientOrder.userId,
+            "sizeId": transientOrder.sizeId,
+            "flavorId": transientOrder.flavorId,
             "theme": transientOrder.theme,
             "writing": transientOrder.writing,
             "pickup": transientOrder.pickup,
             "completed": transientOrder.completed
         }
         await addOrder(orderObj).then(response => {
-            {transientOrder.colors.map(color => {
+            {transientOrder.orderColors.map(color => {
             const colorObj = {
                 "orderId": response.id,
                 "colorId": color.id,
@@ -86,7 +66,6 @@ export const NewOrder = ({currentUser}) => {
         <form>
             <h2> New Cookie Cake Order</h2>
             <OrderOptions
-            // cakeOptions = {cakeOptions}
             transientOrder = {transientOrder} 
             setTransientOrder={setTransientOrder}/>
             <fieldset>

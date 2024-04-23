@@ -2,8 +2,6 @@ import { useState, useEffect } from "react"
 import { getSizes, getFlavors, getColors } from "../../services/orderService.js"
 
 export const OrderOptions = ({transientOrder, setTransientOrder}) => {
-//define change function - handleSizeChange
-//cakeOptions, transientOrder drill prop
 const [cakeOptions, setCakeOptions] = useState({
     sizes: [],
     flavors: [],
@@ -26,40 +24,41 @@ useEffect(()=>{
 
 const handleSizeChange = (event) =>{
    const sizeId = parseInt(event.target.value)
-   setTransientOrder(prevOrder => ({...prevOrder, size: sizeId}))
+   setTransientOrder(prevOrder => ({...prevOrder, sizeId: sizeId}))
 }
 const handleFlavorChange = (event) =>{
     const flavorId = parseInt(event.target.value)
-   setTransientOrder(prevOrder => ({...prevOrder, flavor: flavorId}))
+   setTransientOrder(prevOrder => ({...prevOrder, flavorId: flavorId}))
 }
 const handleColorChange = (event) =>{
-    const colorId = parseInt(event.target.value)
+    const selectedColorId = parseInt(event.target.value)
     const isChecked = event.target.checked;
-    const colorIndex = transientOrder.colors.findIndex(color => color.id === colorId)
+    const colorIndex = transientOrder.orderColors.findIndex(orderColor => orderColor.id === selectedColorId)
 
     if (isChecked){
         if (colorIndex === -1){
             setTransientOrder(prevOrder => ({
                 ...prevOrder,
-                colors: [...prevOrder.colors, cakeOptions.colors.find(color => color.id === colorId)]
+                orderColors: [...prevOrder.orderColors, cakeOptions.colors.find(color => color.id === selectedColorId)]
             }))
         }
     } else {
         if (colorIndex !== -1){
             setTransientOrder(prevOrder => ({
                 ...prevOrder,
-                colors: prevOrder.colors.filter(color => color.id !== colorId)
+                orderColors: [...prevOrder.orderColors.filter(color => color.id !== selectedColorId)]
             }))
         }
     }
 }
 
 return (
-    <div className="order-options">
-        <div>
+        // <form className="order-options">
+        <fieldset>
+            <div className="form-group">
             <h3> Cake Size</h3>
-            <select onChange={handleSizeChange} value={transientOrder.size || ''}>
-                <option value="">Select a Size</option>
+            <select onChange={handleSizeChange} >
+                <option defaultValue={transientOrder?.size?.size}>{transientOrder?.size?.size}</option>
                 {cakeOptions.sizes.map(size => (
                     <option key={size.id} value = {size.id}>{size.size}</option>
                 ))}
@@ -67,8 +66,8 @@ return (
         </div>
         <div>
             <h3> Cake Flavor</h3>
-            <select onChange={handleFlavorChange} value={transientOrder.flavor || ''}>
-                <option value="">Select a Flavor</option>
+            <select onChange={handleFlavorChange} >
+                <option defaultValue={transientOrder?.flavor?.flavor}>{transientOrder.flavor?.flavor}</option>
                 {cakeOptions.flavors.map(flavor => (
                     <option key={flavor.id} value = {flavor.id}>{flavor.flavor}</option>
                 ))}
@@ -83,12 +82,13 @@ return (
                             value={color.id}
                             onChange={handleColorChange}
                             id={`color-${color.id}`}
-                            checked={transientOrder.colors?.some(selectedcolor => selectedcolor.id === color.id)}
+                            checked={transientOrder.orderColors?.some(selectedcolor => selectedcolor.id === color.id)}
                         />
                         <label htmlFor={`color-${color.id}`}>{color.color}</label>
                     </div>
                 ))}
             </div>
-    </div>
+            </fieldset>
+    // </form>
 )
 }

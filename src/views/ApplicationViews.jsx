@@ -6,6 +6,7 @@ import { EmployeeViews } from "./EmployeeViews.jsx"
 export const ApplicationViews = () => {
 
 const [currentUser, setCurrentUser] = useState({});
+const [randomCode, setRandomCode] = useState("")
 
 useEffect(() => {
   const localBakeryUser = localStorage.getItem("bakery_user");
@@ -14,9 +15,9 @@ useEffect(() => {
 }, [])
 
   return currentUser.isStaff ? (
-    <EmployeeViews currentUser={currentUser}/>
+    <EmployeeViews currentUser={currentUser} randomCode={randomCode} setRandomCode={setRandomCode}/>
   ) : (
-    <CustomerViews currentUser={currentUser} /> 
+    <CustomerViews currentUser={currentUser} randomCode={randomCode} /> 
   )
 
       

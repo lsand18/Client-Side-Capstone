@@ -3,9 +3,10 @@ import { Routes, Route } from "react-router-dom"
 import { EmployeeNav } from "../components/nav/EmployeeNav.jsx"
 import { OrderList } from "../components/orders/OrderList.jsx"
 import { OrderView } from "../components/orders/OrderView.jsx"
+import { CodeGenerator } from "../components/rewards/CodeGenerator.jsx"
 
 
-export const EmployeeViews = ({currentUser}) => {
+export const EmployeeViews = ({currentUser, setRandomCode, randomCode}) => {
     return (
         <Routes> 
         <Route path="/" element={
@@ -18,6 +19,7 @@ export const EmployeeViews = ({currentUser}) => {
                     <Route index element={<OrderList currentUser = {currentUser}/>}/>
                     <Route path="/orders/:orderId" element={<OrderView currentUser={currentUser}/>}/>
                 </Route>
+                <Route path="codeGenerator" element={<CodeGenerator setRandomCode={setRandomCode} randomCode={randomCode}/>}/>
        </Route>
         </Routes>
     )
