@@ -3,6 +3,7 @@ import { getCakeColorsByOrderId, getOrdersByOrderId } from "../../services/order
 import { useParams } from "react-router-dom"
 import { OrderOptions } from "./OrderOptions.jsx"
 import { useNavigate } from "react-router-dom"
+import "./forms.css"
 
 export const EditOrder = () => {
 const [transientOrder, setTransientOrder] = useState({

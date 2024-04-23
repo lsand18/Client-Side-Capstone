@@ -1,11 +1,11 @@
 .navbar {
     display: flex;
     flex-wrap: nowrap;
-    background-color: var(--dark);
+    background-color: #b7a1e2;
     margin: 0;
     width: 100%;
-    padding: 0.5rem;
-    height: 20px;
+    padding: 0.75rem;
+    height: 30px;
   }
 
   .navbar-item {

@@ -19,7 +19,7 @@ export const EmployeeViews = ({currentUser, setRandomCode, randomCode}) => {
                     <Route index element={<OrderList currentUser = {currentUser}/>}/>
                     <Route path="/orders/:orderId" element={<OrderView currentUser={currentUser}/>}/>
                 </Route>
-                <Route path="codeGenerator" element={<CodeGenerator setRandomCode={setRandomCode} randomCode={randomCode}/>}/>
+                <Route path="codeGenerator" element={<CodeGenerator />}/>
        </Route>
         </Routes>
     )

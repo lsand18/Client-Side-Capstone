@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { OrderOptions } from "./OrderOptions.jsx"
 import { addOrder, postColor } from "../../services/orderService.js"
 import { useNavigate } from "react-router-dom"
+import "./forms.css"
 
 export const NewOrder = ({currentUser}) => {
     const [transientOrder, setTransientOrder]= useState({

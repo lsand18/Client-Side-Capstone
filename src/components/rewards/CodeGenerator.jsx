@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { useState} from "react"
+import { PostCode } from "../../services/userService.js"
 
-export const CodeGenerator = ({randomCode, setRandomCode}) => {
+export const CodeGenerator = () => {
+    const [randomCode, setRandomCode] = useState("")
 
     const generateRandomCode = () => {
         const code = Math.random().toString(36).substr(2, 6).toUpperCase()
+        PostCode(code)
         setRandomCode(code)
     }
 

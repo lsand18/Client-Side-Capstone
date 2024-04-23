@@ -237,7 +237,8 @@
   "punches": [
     {
       "id": 1,
-      "userId": 2
+      "userId": 2,
+      "code": ""
     },
     {
       "id": 2,
@@ -246,6 +247,11 @@
     {
       "id": 3,
       "userId": 2
+    },
+    {
+      "userId": 2,
+      "code": "OY1P3J",
+      "id": 4
     }
   ],
   "currentFlavors": [
@@ -255,5 +261,9 @@
       "desc": "",
       "img": ""
     }
-  ]
+  ],
+  "code": {
+    "id": 1,
+    "code": "OY1P3J"
+  }
 }
