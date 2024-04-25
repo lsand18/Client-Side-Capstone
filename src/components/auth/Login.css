@@ -1,5 +1,5 @@
 .auth-container {
-  border: 1px solid gray;
+  border: 1px solid #5e548e;
   margin: 3rem 15rem;
   padding: 2rem;
   border-radius: 1rem;
@@ -25,4 +25,7 @@
 
 .auth-fieldset {
   margin: 0.25rem 0rem;
+}
+.btn{
+  background-color: #5e548e;
 }

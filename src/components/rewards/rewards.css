@@ -1,25 +1,30 @@
-.rewardCard{
-display: flex;
-flex-wrap: wrap;
-justify-content: space-evenly;
-margin: 3rem;
-padding: 1rem;
-border: 0.75px solid #b7a1e2;
+.all{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem;
 }
-img{
-    flex-basis: 30%;
-    padding: 0.5rem;
-    max-width: 30%;
-    /* border: 0.5px dotted #b7a1e2; */
-    margin-top: 0.5rem;
+.rewardCard{
+  width: 80%;
+  max-height: 80vh;
+  overflow-y: auto;
+  margin-left: 2rem;
+border: 1px solid var(--outline);
+border-radius: 10px;
+padding: 1rem 0rem 0rem 1rem;
+box-shadow: 1px 2px 5px #5e548e;
+background-color: #cdbaf2;
+}
+.rewardCard img{
+  width: 40%;
+  height: auto;
+  margin: 0.5rem;
+  max-width: 100%;
    mix-blend-mode: multiply;
-   /* opacity: 0; */
 }
 
 form {
-    font-family: Georgia, sans-serif;
-    color: white;
-    margin: 4rem 6rem;
+  width: 40%;
     border: 1px solid var(--outline);
     border-radius: 10px;
     padding: 1rem 0rem 0rem 1rem;
@@ -28,7 +33,6 @@ form {
   }
   
   fieldset {
-    font-family: Georgia, sans-serif;
     min-width: 0;
     padding-bottom: 1.5rem;
     margin: 0;
@@ -36,7 +40,6 @@ form {
   }
   
   .form-control {
-    font-family: Georgia, sans-serif;
     height: calc(1.5em + 0.75rem + 2px);
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
@@ -45,14 +48,12 @@ form {
   }
   
   .form-group {
-    font-family: Georgia, sans-serif;
     margin-right: 1rem;
     display: flex;
     flex-direction: column;
   }
   
   .form-btn {
-    font-family: Georgia, sans-serif;
     align-self: flex-end;
     margin-top: 1rem;
     background-color: #5e548e;

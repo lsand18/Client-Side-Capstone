@@ -1,5 +1,6 @@
 import { useState} from "react"
 import { PostCode } from "../../services/userService.js"
+import "./code.css"
 
 export const CodeGenerator = () => {
     const [randomCode, setRandomCode] = useState("")
@@ -11,13 +12,15 @@ export const CodeGenerator = () => {
     }
 
     return(
-        <div>
+        <div className="codeBox">
             <h2> Generate Code </h2>
-            <button onClick={generateRandomCode}>
+            <button 
+            className="btn"
+            onClick={generateRandomCode}>
                 New Code
             </button>
             {randomCode && (
-                <div>
+                <div className="code">
                     <h3> Random Code: </h3>
                     <p>{randomCode}</p>
                     </div>
