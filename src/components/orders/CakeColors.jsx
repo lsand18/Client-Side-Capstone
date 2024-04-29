@@ -20,10 +20,10 @@ const [currentCakeColors, setCurrentCakeColors] = useState([])
 return (
         <>
         {currentCakeColors.lenth !== 0?(
-        currentCakeColors.map(color =>{
+        currentCakeColors.map((color, index) =>{
         return(
-            <div key={color.id}>
-                {color.color?.color}
+            <div key={color.id} style={{marginRight: '5px'}}>
+                {color.color?.color}{index !== currentCakeColors.length - 1 ? ',  ' : ''}
             </div>
         )
     })):(<div>None</div>)

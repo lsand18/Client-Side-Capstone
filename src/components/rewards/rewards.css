@@ -1,67 +1,74 @@
-.all{
+.all {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 2rem;
+  width: 100%;
 }
-.rewardCard{
-  width: 80%;
+
+.rewardCard {
+  flex: 1;
+  max-width: 50%;
   max-height: 80vh;
+  margin-right: 6rem;
   overflow-y: auto;
-  margin-left: 2rem;
-border: 1px solid var(--outline);
-border-radius: 10px;
-padding: 1rem 0rem 0rem 1rem;
-box-shadow: 1px 2px 5px #5e548e;
-background-color: #cdbaf2;
+  border: 1px solid var(--outline);
+  border-radius: 2px;
+  padding-right: 1rem;
+  box-shadow: 1px 2px 5px #5e548e;
+  background-color: #cdbaf2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.rewardCard img{
-  width: 40%;
-  height: auto;
-  margin: 0.5rem;
-  max-width: 100%;
-   mix-blend-mode: multiply;
+
+.rewardCard img {
+  width: calc(33.33%- 10px);
+  margin-bottom: 10px;
+  mix-blend-mode: multiply;
+}
+
+.form {
+  flex: 1;
+  max-width: 50%;
+  margin-right: 2rem;
 }
 
 form {
-  width: 40%;
-    border: 1px solid var(--outline);
-    border-radius: 10px;
-    padding: 1rem 0rem 0rem 1rem;
-    box-shadow: 1px 2px 5px #5e548e;
-    background-color: #cdbaf2;
-  }
-  
-  fieldset {
-    min-width: 0;
-    padding-bottom: 1.5rem;
-    margin: 0;
-    border: 0;
-  }
-  
-  .form-control {
-    height: calc(1.5em + 0.75rem + 2px);
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    border: 1px solid var(--outline);
-    border-radius: 0.25rem;
-  }
-  
-  .form-group {
-    margin-right: 1rem;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-btn {
-    align-self: flex-end;
-    margin-top: 1rem;
-    background-color: #5e548e;
-  }
-  
-  .form-btn:focus {
-    box-shadow: none;
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-  }
+  color: white;
+  border: 1px solid var(--outline);
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px #5e548e;
+  background-color: #cdbaf2;
+}
 
+fieldset {
+  min-width: 0;
+  padding-bottom: 1.5rem;
+  margin-right: 0;
+  border: 0;
+}
+
+.form-control {
+  height: calc(1.5em + 0.75rem + 2px);
+  font-size: 1rem;
+  border: 1px solid var(--outline);
+  border-radius: 0.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-btn {
+  align-self: flex-end;
+  margin-top: 1rem;
+  background-color: #5e548e;
+}
+
+.form-btn:focus {
+  box-shadow: none;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}

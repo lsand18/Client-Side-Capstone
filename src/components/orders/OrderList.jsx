@@ -4,16 +4,12 @@ import { OrdersFilter } from "./OrdersFilter.jsx"
 import { Link } from "react-router-dom"
 import "./orders.css"
 
-//import icon script
-
-
 export const OrderList = ({currentUser}) => {
     const [allOrders, setAllOrders] = useState([])
     const [filteredOrders, setFilteredOrders] = useState([])
     const [filterDay, setFilterDay] = useState(0)
     const [showIncomplete, setShowIncomplete] = useState(false)
     
-    //TODO
     const getAndSetAllOrders = () => {
         getAllOrdersSortedByTime().then(ordersArray =>{
             if (currentUser.isStaff){
@@ -26,6 +22,7 @@ export const OrderList = ({currentUser}) => {
     }
     const handleClear = () =>{
         getAndSetAllOrders()
+        setFilterDay(0)
     }
 
     //initial render only
@@ -49,13 +46,14 @@ export const OrderList = ({currentUser}) => {
       }, [showIncomplete, allOrders])
 
     const OrderDeleted = async (orderId) =>{
-        DeleteOrder(orderId)
+        await DeleteOrder(orderId)
+        getAndSetAllOrders()
     }
 
 //create a control that shows upcoming orders first and past date orders at the end
 return (
     <div className="orders-container">
-    <h2>Orders </h2>
+    <h1>Orders </h1>
     {currentUser.isStaff ? (
     <OrdersFilter 
     currentUser={currentUser} 
@@ -67,12 +65,12 @@ return (
     <article className="orders">
         {filteredOrders.map(orderObj => {
             return (
-                <section className="order" key={orderObj.id}>
+                <section className="order-item" key={orderObj.id}>
                     <Link to={`/orders/${orderObj.id}`}>
-                        <header className="order-info">Order #{orderObj.id}</header>
+                        <header className="order-item-info">Order #{orderObj.id}</header>
                     </Link>
                     <footer>
-                        <div className="order-info">{new Date(orderObj?.pickup).toLocaleDateString('en-US', {timeZone: 'GMT', dateStyle: 'medium'})}</div>
+                        <div className="order-item-info">{new Date(orderObj?.pickup).toLocaleDateString('en-US', {timeZone: 'GMT', dateStyle: 'medium'})}</div>
                         <div className="btn-container">
                             {currentUser.isStaff ? (
                                 <button className="delete-btn"

@@ -53,7 +53,6 @@ const handleColorChange = (event) =>{
 }
 
 return (
-        // <form className="order-options">
         <fieldset>
             <div className="form-group">
             <h3> Cake Size</h3>
@@ -64,7 +63,7 @@ return (
                 ))}
                 </select>
         </div>
-        <div>
+        <div className="form-group">
             <h3> Cake Flavor</h3>
             <select onChange={handleFlavorChange} >
                 <option defaultValue={transientOrder?.flavor?.flavor}>{transientOrder.flavor?.flavor}</option>
@@ -89,6 +88,5 @@ return (
                 ))}
             </div>
             </fieldset>
-    // </form>
 )
 }

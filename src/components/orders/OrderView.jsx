@@ -34,46 +34,47 @@ export const OrderView = ({currentUser}) => {
 
     return (
         <>
-            <div className="orders-container">
-                <div className="order">
             {currentUser?.isStaff ?(
-                <>
+                <div className="customer">
+                    <h3> Customer Info: </h3>
                 <div className="customer-info">
-                    <span>Full Name: </span>
+                    <h4>Full Name: </h4>
                     {customer.fullName}
                 </div>
                 <div className="customer-info">
-                <span>Phone Number: </span>
+                <h4>Phone Number: </h4>
                 {customer.phone}
             </div>
             <div className="customer-info">
-                <span>Email: </span>
+                <h4>Email: </h4>
                 {customer.email}
             </div>
-            </>
+            </div>
             ): ("")}
+             <div className="order">
+            <h2> Order Info: </h2>
                 <div className="order-info">
-                <span>Cake Size: </span>
+                <h4>Cake Size: </h4>
                 {currentOrder?.size?.size}
                 </div>
                 <div className="order-info">
-                <span>Cake Flavor: </span>
+                <h4>Cake Flavor: </h4>
                 {currentOrder?.flavor?.flavor}
                 </div>
                 <div className="order-info">
-                <span>Frosting Colors: </span>
+                <h4>Frosting Colors: </h4>
                 <CakeColors orderId={orderId}/>
                 </div>
                 <div className="order-info">
-                <span>Theme: </span>
-                {currentOrder?.theme}
+                <h4>Theme: </h4>
+                {"\"" + currentOrder?.theme + "\""}
                 </div>
                 <div className="order-info">
-                <span>Writing: </span>
-                {currentOrder?.writing}
+                <h4>Writing: </h4>
+                {"\"" + currentOrder?.writing + "\""}
                 </div>
                 <div className="order-info">
-                <span>Pickup Date: </span>
+                <h4>Pickup Date: </h4>
                 {new Date(currentOrder?.pickup).toLocaleDateString('en-US', {timeZone: 'GMT', dateStyle: 'medium'})}
                 </div>
                 {(new Date().getTime() + 86400) < currentOrder.pickup ?(
@@ -94,7 +95,6 @@ export const OrderView = ({currentUser}) => {
             ):("")}
             
                 </div>
-            </div>
         </>
     )
 }

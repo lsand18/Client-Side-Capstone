@@ -51,6 +51,7 @@ export const CustomerRewards = ({currentUser}) => {
 
     return (
         <div className="all">
+          <div className="form">
         <form>
             <h3> Input Rewards Code: </h3>
             <fieldset>
@@ -81,6 +82,7 @@ export const CustomerRewards = ({currentUser}) => {
                 </div>
             </fieldset>
         </form>
+        </div>
         <div className="rewardCard">
             {imageElements}
             {imageElementsTwo}

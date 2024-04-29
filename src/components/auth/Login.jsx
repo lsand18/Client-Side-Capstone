@@ -33,8 +33,8 @@ export const Login = () => {
     <main className="auth-container">
       <section>
         <form className="auth-form" onSubmit={handleLogin}>
-          <h1 className="header">Best Bakery in Town</h1>
-          <h2>Please sign in</h2>
+          <h1 className="header">Welcome!</h1>
+          <h2>Please Sign Into Your Account</h2>
           <fieldset className="auth-fieldset">
             <div>
               <input
@@ -42,7 +42,7 @@ export const Login = () => {
                 value={email}
                 className="auth-form-input"
                 onChange={(evt) => set(evt.target.value)}
-                placeholder="Email address"
+                placeholder="Email Address"
                 required
                 autoFocus
               />
@@ -54,10 +54,10 @@ export const Login = () => {
               className="btn">Sign in</button>
             </div>
           </fieldset>
-        </form>
-      </section>
-      <section className="register-link">
+          <section className="register-link">
         <Link to="/register">Not a member yet?</Link>
+      </section>
+        </form>
       </section>
     </main>
   )

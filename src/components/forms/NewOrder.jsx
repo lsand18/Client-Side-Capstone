@@ -65,7 +65,7 @@ export const NewOrder = ({currentUser}) => {
 
     return(
         <form>
-            <h2> New Cookie Cake Order</h2>
+            <h1> New Cookie Cake Order</h1>
             <OrderOptions
             transientOrder = {transientOrder} 
             setTransientOrder={setTransientOrder}/>

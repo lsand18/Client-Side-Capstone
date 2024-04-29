@@ -70,14 +70,6 @@ const handleSave = async (e) =>{
 }    
 
 const checkColors = async () => {
-    debugger
-    //get original order by fetch and set const orderObj
-    //map throught orderObj.orderColors and find index by checking transientOrder.orderColors
-    //if index ==== -1 then it wasnt in the original so add it
-    //now map through transient order.orderColors
-    //colorIndex == orderObj.orderColors.findIndex
-    //if index ==== -1 then it was in original but not now so delete it
-
     getCakeColorsByOrderId(parseInt(orderId)).then(orderArr =>{
         {orderArr.map((orderObj)=>{
             const colorIndex = transientOrder.orderColors?.findIndex(color => color.colorId === orderObj.colorId)
