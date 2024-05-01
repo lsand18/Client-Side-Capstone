@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import "./sales.css"
-import { getAllOrdersSortedByTime } from "../../services/orderService.js"
+import { getAllOrdersSortedByTime, getFlavors, getSizes } from "../../services/orderService.js"
 import { Link } from "react-router-dom"
 
 export const Sales = () => {
@@ -9,10 +9,19 @@ export const Sales = () => {
     //add most popular flavor
     // to do this, use array count method for both and display 
     // const [allOrders, setAllOrders] = useState({})
-    const [filteredOrders, setFilteredOrders] = useState({})
+    const [filteredOrders, setFilteredOrders] = useState([])
     const [filterMonth, setFilterMonth] = useState(0)
     const [totalSales, setTotalSales] = useState(0)
     const [salesMessage,setSalesMessage] = useState("")
+    const [mostPopularSize, setMostPopularSize] = useState("")
+    const [mostPopularFlavor, setMostPopularFlavor] = useState("")
+    const [sizes, setSizes] = useState([])
+    const [flavors, setFlavors] = useState([])
+
+    useEffect(()=>{
+        getSizes().then((sizeArr)=> setSizes(sizeArr))
+        getFlavors().then((flavorArr)=> setFlavors(flavorArr))
+    },[])
 
     const getAndSetAllOrders = () => {
         getAllOrdersSortedByTime().then(ordersArr => {
@@ -22,21 +31,25 @@ export const Sales = () => {
     }
 
     useEffect(() => {
-        getAndSetAllOrders()
+         getAndSetAllOrders()
     }, [])
 
-    useEffect(() => {
-        //write fetch call with end and beg of month
-        //make async?
+    useEffect(()=>{
+        calculateMostPopular()
+    },[filteredOrders])
 
-        //or write an if statement.. if filter month is not zero
-        // if (chosenMonth !== 0) {
-        //     const chosenMonthNumber = chosenMonth - 1
-        //     const selectedMonthOrders = allOrders.filter(order => new Date(order.timestamp).getMonth() === chosenMonthNumber)
-        getOrdersByMonth().then(orderArr => {
-            setFilteredOrders(orderArr)
-        })
-    }, [filterMonth])
+    // useEffect(() => {
+    //     //write fetch call with end and beg of month
+    //     //make async?
+
+    //     //or write an if statement.. if filter month is not zero
+    //     // if (chosenMonth !== 0) {
+    //     //     const chosenMonthNumber = chosenMonth - 1
+    //     //     const selectedMonthOrders = allOrders.filter(order => new Date(order.timestamp).getMonth() === chosenMonthNumber)
+    //     getOrdersByMonth().then(orderArr => {
+    //         setFilteredOrders(orderArr)
+    //     })
+    // }, [filterMonth])
 
     useEffect(() => {
         if (totalSales !== 0){
@@ -45,6 +58,39 @@ export const Sales = () => {
             setSalesMessage("No Sales This Month")
         }
     }, [totalSales])
+
+ const calculateMostPopular = () => {
+debugger
+    if(filteredOrders.length === 0){
+        setMostPopularFlavor("N/A")
+        setMostPopularSize("N/A")
+        return;
+    }
+    const sizeCounter = {}
+    const flavorCounter = {}
+
+    filteredOrders.forEach(order =>{
+        if(sizeCounter[order.sizeId]){
+            sizeCounter[order.sizeId]++
+        }else{
+            sizeCounter[order.sizeId] = 1
+        }
+
+        if(flavorCounter[order.flavorId]){
+            flavorCounter[order.flavorId]++
+        }else{
+            flavorCounter[order.flavorId] = 1
+        }
+    })
+
+    const mostPopularSizeId = Object.keys(sizeCounter).reduce((a,b)=> sizeCounter[a]>sizeCounter[b] ? a : b)
+    const mostPopularSizeName = sizes.find(size => size.id === parseInt(mostPopularSizeId))?.size || "N/A" 
+    setMostPopularSize(mostPopularSizeName)
+
+    const mostPopularFlavorId = Object.keys(flavorCounter).reduce((a,b)=> flavorCounter[a]>flavorCounter[b] ? a : b)
+    const mostPopularFlavorName = flavors.find(flavor => flavor.id === parseInt(mostPopularFlavorId))?.flavor || "N/A" 
+    setMostPopularFlavor(mostPopularFlavorName)
+ }
 
     return (
         <>
@@ -86,7 +132,7 @@ export const Sales = () => {
                                 {orderObj.size?.size}
                             </div>
                             <div className="order-item-info">
-                                {orderObj.size?.price}
+                                {"$" + orderObj.size?.price}
                             </div>
                         </footer>
                     </section>

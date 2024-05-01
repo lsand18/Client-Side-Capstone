@@ -5,6 +5,7 @@ import { OrderList } from "../components/orders/OrderList.jsx"
 import { OrderView } from "../components/orders/OrderView.jsx"
 import { CodeGenerator } from "../components/rewards/CodeGenerator.jsx"
 import { EditOrder } from "../components/forms/EditOrder.jsx"
+import { Sales } from "../components/sales/Sales.jsx"
 
 
 export const EmployeeViews = ({currentUser, setRandomCode, randomCode}) => {
@@ -23,6 +24,7 @@ export const EmployeeViews = ({currentUser, setRandomCode, randomCode}) => {
 
                 </Route>
                 <Route path="codeGenerator" element={<CodeGenerator />}/>
+                <Route path="sales" element={<Sales />}/>
        </Route>
         </Routes>
     )

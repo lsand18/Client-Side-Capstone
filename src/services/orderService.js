@@ -1,5 +1,5 @@
 export const getAllOrdersSortedByTime = () => {
-    return fetch(`http://localhost:8088/orders?_sort=pickup`).then(res => res.json())
+    return fetch(`http://localhost:8088/orders?_sort=pickup&_expand=flavor&_expand=size`).then(res => res.json())
 }
 
 export const getOrdersByPickup = (filterDayTime) => {
