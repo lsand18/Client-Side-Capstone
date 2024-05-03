@@ -1,0 +1,54 @@
+.allSales {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.orders-container {
+    flex: 1;
+margin: 0 6rem;
+}
+
+.info {
+    display: flex;
+    font-family: Georgia, sans-serif;
+    color: #fef9ef;
+    background-color: #9f86c0;
+    border: 1px solid #9f86c0;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 0 6rem;
+   
+    
+    
+}
+.message{
+    
+    margin: 0 2rem;
+    padding: 1rem;
+    
+}
+.chart{
+    flex: 1;
+    align-items: stretch;
+}
+.filter > select {
+    margin-right: 6rem;
+    margin-bottom: 2rem;
+    align-self: flex-end;
+    color: white;
+    font-family: Georgia, sans-serif;
+    font-size: 16px;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: #9f86c0;
+    border: 1px solid #9f86c0;
+    color: white;
+    margin-top: 2rem;
+    margin-right: 6rem;
+}
+
+.words{
+    flex: 1;
+    align-items: stretch;
+}

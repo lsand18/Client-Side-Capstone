@@ -14,7 +14,7 @@ export const EmployeeNav = () => {
         </li>
         <li className="navbar-item">
             {/* change this link */}
-            <Link to='/codeGenerator'>Code Generator</Link>
+            <Link to='/'>Code Generator</Link>
         </li>
         {localStorage.getItem("bakery_user") ? (
             <li className="navbar-item navbar-logout">

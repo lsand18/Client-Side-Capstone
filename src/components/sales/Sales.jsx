@@ -2,13 +2,11 @@ import { useEffect, useState } from "react"
 import "./sales.css"
 import { getAllOrdersSortedByTime, getFlavors, getSizes } from "../../services/orderService.js"
 import { Link } from "react-router-dom"
+import { SalesChart } from "./SalesChart.jsx"
+
 
 export const Sales = () => {
-    //add filter for month
-    //add most popular size
-    //add most popular flavor
-    // to do this, use array count method for both and display 
-    // const [allOrders, setAllOrders] = useState({})
+    const [allOrders, setAllOrders] = useState([])
     const [filteredOrders, setFilteredOrders] = useState([])
     const [filterMonth, setFilterMonth] = useState(0)
     const [totalSales, setTotalSales] = useState(0)
@@ -25,47 +23,58 @@ export const Sales = () => {
 
     const getAndSetAllOrders = () => {
         getAllOrdersSortedByTime().then(ordersArr => {
-            setFilteredOrders(ordersArr)
-            //might need to set filtered orders. we do not need all orders
+            setAllOrders(ordersArr)
         })
     }
-
     useEffect(() => {
-         getAndSetAllOrders()
-    }, [])
+        getAndSetAllOrders()
+   }, [])
+
+   const calculateTotalSales = () => {
+        let priceAdd = 0
+        filteredOrders.forEach(order => {
+            if(order.size){
+                priceAdd += order.size.price
+            }
+        })
+        setTotalSales(priceAdd)
+    }
+
+    useEffect(()=>{
+        setFilteredOrders(allOrders)
+    },[allOrders])
 
     useEffect(()=>{
         calculateMostPopular()
+        calculateTotalSales()
     },[filteredOrders])
 
-    // useEffect(() => {
-    //     //write fetch call with end and beg of month
-    //     //make async?
-
-    //     //or write an if statement.. if filter month is not zero
-    //     // if (chosenMonth !== 0) {
-    //     //     const chosenMonthNumber = chosenMonth - 1
-    //     //     const selectedMonthOrders = allOrders.filter(order => new Date(order.timestamp).getMonth() === chosenMonthNumber)
-    //     getOrdersByMonth().then(orderArr => {
-    //         setFilteredOrders(orderArr)
-    //     })
-    // }, [filterMonth])
+    useEffect(() => {
+        if (filterMonth !== 0) {
+            const chosenMonthNumber = filterMonth - 1
+            const selectedMonthOrders = allOrders.filter(order => new Date(order.pickup).getMonth() === chosenMonthNumber)
+            setFilteredOrders(selectedMonthOrders)
+        }else {
+            setFilteredOrders(allOrders)
+        }
+    }, [filterMonth, allOrders])
 
     useEffect(() => {
         if (totalSales !== 0){
-            setSalesMessage(`Total Sales: ${totalSales.toLocaleString("en-US",{style: "currency",currency:"USD"})}`)
+            setSalesMessage(`${totalSales.toLocaleString("en-US",{style: "currency",currency:"USD"})}`)
         } else {
             setSalesMessage("No Sales This Month")
         }
     }, [totalSales])
 
+
+
  const calculateMostPopular = () => {
-debugger
     if(filteredOrders.length === 0){
         setMostPopularFlavor("N/A")
         setMostPopularSize("N/A")
         return;
-    }
+    } else {
     const sizeCounter = {}
     const flavorCounter = {}
 
@@ -90,11 +99,12 @@ debugger
     const mostPopularFlavorId = Object.keys(flavorCounter).reduce((a,b)=> flavorCounter[a]>flavorCounter[b] ? a : b)
     const mostPopularFlavorName = flavors.find(flavor => flavor.id === parseInt(mostPopularFlavorId))?.flavor || "N/A" 
     setMostPopularFlavor(mostPopularFlavorName)
- }
+ }}
 
     return (
-        <>
-        <div className="filter">
+        <div className="allSales">
+            <div className="filter">
+            {/* <label> Month: </label> */}
         <select onChange={(event) => {
             setFilterMonth(parseInt(event.target.value))
         }}>
@@ -113,8 +123,16 @@ debugger
             <option value="12">December</option>
         </select>
     </div>
-    <div>
-        <b>{salesMessage}</b>
+              <div className="info">
+              <div className="words">
+        
+    <div className="message">
+        <h4>Total Sales:</h4><b>{salesMessage}</b>
+        <h4> Most Popular Flavor: </h4><b>{mostPopularFlavor}</b>
+        <h4> Most Popular Size: </h4><b>{mostPopularSize}</b>
+    </div>
+    </div>
+    <SalesChart allOrders={allOrders}/>
     </div>
         <div className="orders-container">
             <h1> Orders </h1>
@@ -139,6 +157,6 @@ debugger
                 )
             })}
         </div>
-        </>
+        </div>
     )
 }

@@ -18,8 +18,8 @@ export const getUserByUserId = (userId) =>{
   return fetch (`http://localhost:8088/users/${userId}`).then(res => res.json())
 }
 
-export const getPunchesByUserId = (userId) =>{
-  return fetch (`http://localhost:8088/punches?/userId=${userId}`).then(res => res.json())
+export const getPunchesByUserId = async (userId) =>{
+  return fetch (`http://localhost:8088/punches?userId=${userId}`).then(res => res.json())
 }
 
 export const PostCode = async (code) => {

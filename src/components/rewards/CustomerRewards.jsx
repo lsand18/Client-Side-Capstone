@@ -19,7 +19,7 @@ export const CustomerRewards = ({currentUser}) => {
         setRewardLevel(punchArr.length)
         setCodesUsed(punchArr)
     })
-  }, [currentUser])
+  }, [currentUser, rewardLevel])
 
   useEffect(()=>{
     getRewardCode().then(codeObj =>{
