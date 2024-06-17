@@ -1,7 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom"
 
-// We can access child components the same way we access props. Child components are passed to our props as a key/value pair where
-// children is the key.
 
 export const Authorized = ({ children }) => {
   let location = useLocation()

@@ -48,8 +48,11 @@ useEffect(()=> {
     })
 },[orderId])
 
-const handleDateChange = () => {
-    console.log("make the date work hehe")
+const handleDateChange = (event) => {
+    const copy = {...transientOrder}
+    const date = new Date(event.target.value).getTime()
+    copy.pickup = date
+    setTransientOrder(copy)
 }
 
 const handleSave = async (e) =>{
@@ -66,37 +69,36 @@ const handleSave = async (e) =>{
     }
     await updateOrder(order)
     await checkColors()
-    navigate(`/orders`)
 }    
 
 const checkColors = async () => {
-    getCakeColorsByOrderId(parseInt(orderId)).then(orderArr =>{
-        {orderArr.map((orderObj)=>{
+    const orderArr = await getCakeColorsByOrderId(parseInt(orderId))
+        const deletePromises = orderArr.map(async (orderObj)=>{
             const colorIndex = transientOrder.orderColors?.findIndex(color => color.colorId === orderObj.colorId)
         if (colorIndex === -1){
-            DeleteColor(orderObj.id)
+             await DeleteColor(orderObj.id)
         }
-        })}
-        {
-            transientOrder.orderColors.map((colorObj)=>{
+        })
+        
+           const createPromises = transientOrder.orderColors.map(async (colorObj)=>{
                 const colorIndex = orderArr.findIndex(color => color.colorId === colorObj.colorId)
                 if (colorIndex === -1){
                     const newColorObj = {
                         orderId: parseInt(orderId),
                         colorId: colorObj.id
                     }
-                    postColor(newColorObj)
+                    await postColor(newColorObj)
                 }
             })
-        }
-    })
+  await Promise.all([...deletePromises, ... createPromises])
+  navigate(`/orders/${orderId}`)
 }
 
 const formatDateFromTimestamp = () => {
     const date = new Date(transientOrder.pickup)
     const year = date.getFullYear()
     const month = String(date.getMonth()+1).padStart(2, '0')
-    const day = String(date.getDate()).padStart(2, '0')
+    const day = String(date.getDate()+1).padStart(2, '0')
     const formattedDate = `${year}-${month}-${day}`
     return formattedDate
 }
@@ -140,9 +142,9 @@ return (
             <input type="date" id="pickup" name="pickup"
             value={formatDateFromTimestamp()}
                 onChange={(event) => {
-                    // event.target.value ? 
                     handleDateChange(event)
-                //         : handleClear()
+                    console.log(transientOrder)
+                
                 }}
             />
         </div>

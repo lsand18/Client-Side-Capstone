@@ -12,7 +12,7 @@ export const ImageRotator = ({ image }) => {
     <img
       src={image}
       alt="Image"
-      className={`${styles.image} ${loaded ? styles.show : ''}`} // Apply styles conditionally
+      className={`${styles.image} ${loaded ? styles.show : ''}`} 
     />
   );
 };

@@ -4,13 +4,12 @@ import { getOrdersByOrderId, DeleteOrder } from "../../services/orderService.js"
 import "./orders.css"
 import { CakeColors } from "./CakeColors.jsx"
 import { getUserByUserId } from "../../services/userService.js"
+import { completeOrderChange } from "../../services/orderService.js"
 
 export const OrderView = ({currentUser}) => {
     const { orderId } = useParams()
     const [currentOrder, setCurrentOrder] = useState({})
     const [customer, setCustomer] = useState({})
-    // const [orderPrice, setOrderPrice] = useState(0)
-    // const [colors, setColors]=useState([])
     const navigate = useNavigate()
 
     const getAndSetOrder = () => {
@@ -30,6 +29,22 @@ export const OrderView = ({currentUser}) => {
             setCustomer(user)
         })
     },[currentUser, currentOrder])
+
+    const completeOrder = () => {
+        const copy = {
+            id: currentOrder.id,
+            sizeId: currentOrder.sizeId,
+            flavorId: currentOrder.flavorId,
+            userId: currentOrder.userId,
+            theme: currentOrder.theme,
+            writing: currentOrder.writing,
+            pickup: currentOrder.pickup,
+            completed: true
+        }
+        completeOrderChange(copy).then(()=>{
+            navigate(`/orders`)
+        })
+    }
 
 
     return (
@@ -93,7 +108,11 @@ export const OrderView = ({currentUser}) => {
         </div>
         </>
             ):("")}
-            
+            {currentUser?.isStaff && currentOrder.completed===false ? (
+                <button className="btn-primary"
+                onClick={completeOrder}
+                >Complete Order</button>
+            ): ("")}
                 </div>
         </>
     )

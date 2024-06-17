@@ -40,6 +40,7 @@ form {
   border-radius: 10px;
   box-shadow: 1px 2px 5px #5e548e;
   background-color: #cdbaf2;
+  padding: 1rem;
 }
 
 fieldset {

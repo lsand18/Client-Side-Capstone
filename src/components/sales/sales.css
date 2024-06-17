@@ -23,10 +23,13 @@ margin: 0 6rem;
     
 }
 .message{
-    
     margin: 0 2rem;
     padding: 1rem;
     
+}
+.salesInfo{
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
 }
 .chart{
     flex: 1;
@@ -51,4 +54,8 @@ margin: 0 6rem;
 .words{
     flex: 1;
     align-items: stretch;
+}
+
+.filter{
+    margin-left: 5rem;
 }

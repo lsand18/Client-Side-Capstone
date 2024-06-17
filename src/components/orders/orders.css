@@ -8,7 +8,7 @@
 
 .orders-container {
   margin: 1rem 3rem 0rem 3rem;
-
+color: whitesmoke;
 }
 
 
@@ -22,10 +22,14 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 0.5rem;
+  margin-top: 5rem;
+  padding: 2rem;
   
 }
 .order h2{
   margin-left: 3rem;
+  color: whitesmoke;
+  padding-bottom: 1rem;
 }
 
 
@@ -103,7 +107,6 @@
 }
 
 h1 {
-  color: #fef9ef;
   font-family: Georgia, sans-serif;
 }
 

@@ -1,13 +1,9 @@
-// import { useNavigate } from "react-router-dom"
-// import { getOrdersByPickup } from "../../services/orderService.js"
-// import { useState, useEffect } from "react"
 import "./orders.css"
 
 export const OrdersFilter = ({ setFilterDay, setFilteredOrders, handleClear,setShowIncomplete, currentUser }) => {
     
    const handleDateChange = (event) => {
         const beginning = new Date(event.target.value).getTime()
-        //sets timestamp for beginning of day
         setFilterDay(beginning)
     }
 

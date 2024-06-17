@@ -25,7 +25,6 @@ export const OrderList = ({currentUser}) => {
         setFilterDay(0)
     }
 
-    //initial render only
     useEffect(()=>{ 
         getAndSetAllOrders()
     },[currentUser])
@@ -50,7 +49,6 @@ export const OrderList = ({currentUser}) => {
         getAndSetAllOrders()
     }
 
-//create a control that shows upcoming orders first and past date orders at the end
 return (
     <div className="orders-container">
     <h1>Orders </h1>
@@ -71,6 +69,13 @@ return (
                     </Link>
                     <footer>
                         <div className="order-item-info">{new Date(orderObj?.pickup).toLocaleDateString('en-US', {timeZone: 'GMT', dateStyle: 'medium'})}</div>
+                        
+                            {orderObj.completed ? (
+                                <div className="order-item-info">
+                                Complete
+                                </div>
+                            ): ("")}
+                        
                         <div className="btn-container">
                             {currentUser.isStaff ? (
                                 <button className="delete-btn"

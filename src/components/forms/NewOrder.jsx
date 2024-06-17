@@ -1,8 +1,3 @@
-//add calender and on change for pickup
-//create save button - routes to confirmation page with total price
-//create ok button on confirmation that routes to my orders
-//send to database
-
 import { useEffect, useState } from "react"
 import { OrderOptions } from "./OrderOptions.jsx"
 import { addOrder, postColor } from "../../services/orderService.js"
@@ -31,7 +26,6 @@ export const NewOrder = ({currentUser}) => {
     }, [currentUser])
 
     const handleDateChange = (event) => {
-        //add check for future date
         console.log(event.target.value)
         const date = new Date(event.target.value).getTime()
         console.log(date)
@@ -100,9 +94,7 @@ export const NewOrder = ({currentUser}) => {
             <label htmlFor="filterDay">Pickup Day:</label>
             <input type="date" id="pickup" name="pickup"
                 onChange={(event) => {
-                    // event.target.value ? 
                     handleDateChange(event)
-                //         : handleClear()
                 }}
             />
         </div>

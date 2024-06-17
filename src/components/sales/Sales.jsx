@@ -104,7 +104,6 @@ export const Sales = () => {
     return (
         <div className="allSales">
             <div className="filter">
-            {/* <label> Month: </label> */}
         <select onChange={(event) => {
             setFilterMonth(parseInt(event.target.value))
         }}>
@@ -127,9 +126,9 @@ export const Sales = () => {
               <div className="words">
         
     <div className="message">
-        <h4>Total Sales:</h4><b>{salesMessage}</b>
-        <h4> Most Popular Flavor: </h4><b>{mostPopularFlavor}</b>
-        <h4> Most Popular Size: </h4><b>{mostPopularSize}</b>
+        <h4 className="salesInfo">Total Sales:</h4><b>{salesMessage}</b>
+        <h4 className="salesInfo"> Most Popular Flavor: </h4><b>{mostPopularFlavor}</b>
+        <h4 className="salesInfo"> Most Popular Size: </h4><b>{mostPopularSize}</b>
     </div>
     </div>
     <SalesChart allOrders={allOrders}/>
@@ -139,7 +138,7 @@ export const Sales = () => {
             {filteredOrders.map(orderObj => {
                 return (
                     <section className="order-item" key={orderObj.id}>
-                        <Link to={`orders/${orderObj.id}`}>
+                        <Link to={`/orders/${orderObj.id}`}>
                             <header className="order-item-info">Order #{orderObj.id}</header>
                         </Link>
                         <footer>

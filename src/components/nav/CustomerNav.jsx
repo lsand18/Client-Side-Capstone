@@ -14,11 +14,11 @@ export const CustomerNav = () => {
                 <Link to='/orders'>My Orders</Link>
             </li>
             <li className="navbar-item">
-                <Link to='/newOrder'>Order A Cake</Link>
+                <Link to='/newOrder'>Order A Cookie Cake</Link>
             </li>
-            {/* <li className="navbar-item">
+            <li className="navbar-item">
                 <Link to='/currentFlavors'>Current Flavors</Link>
-            </li> */}
+            </li>
             {localStorage.getItem("bakery_user") ? (
                 <li className="navbar-item navbar-logout">
                     <Link

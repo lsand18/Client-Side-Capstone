@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import "./Login.css"
@@ -51,7 +51,7 @@ export const Login = () => {
           <fieldset className="auth-fieldset">
             <div>
               <button type="submit"
-              className="btn">Sign in</button>
+              className="btn-primary">Sign in</button>
             </div>
           </fieldset>
           <section className="register-link">

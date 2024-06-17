@@ -15,7 +15,7 @@ export const CodeGenerator = () => {
         <div className="codeBox">
             <h2> Generate Code </h2>
             <button 
-            className="btn"
+            className="btn-primary"
             onClick={generateRandomCode}>
                 New Code
             </button>

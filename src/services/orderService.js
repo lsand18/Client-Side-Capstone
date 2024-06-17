@@ -67,3 +67,13 @@ export const DeleteOrder = async (orderId) => {
     });
     return await response.json();
   };
+  export const completeOrderChange = async (order) => {
+    const response = await fetch(`http://localhost:8088/orders/${order.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(order),
+    });
+    return await response.json();
+  };

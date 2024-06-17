@@ -32,14 +32,12 @@ export const CustomerRewards = ({currentUser}) => {
   Array.from({length: rewardLevel},(_,index) =>(
     <ImageRotator key={index} image={coloredCookie}/> )):
     Array.from({length: 9},(_,index) =>(
-      <ImageRotator key={index} image={coloredCookie}/> 
-    // <img key={index} src={coloredCookie}/>
+      <ImageRotator key={index} image={coloredCookie}/>
   ))
   const imageElementsTwo = 
   rewardLevel < 10 ? 
   Array.from({length: (9 - rewardLevel)},(_,index) =>(
     <ImageRotator key={index + rewardLevel} image={transparentCookie}/>)) : ""
-    // <img key={10-index} src={transparentCookie}/>
 
   const handlePost = () => {
     const post = {
@@ -88,10 +86,8 @@ export const CustomerRewards = ({currentUser}) => {
             {imageElementsTwo}
            {rewardLevel <= 9 ? (
             <ImageRotator image={freeCookie}/>
-            // <img src={freeCookie} />
            ): (
             <ImageRotator image={check}/>
-            // <img src={freeCookieColored} />
            )}
          
         </div>
